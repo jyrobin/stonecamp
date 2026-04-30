@@ -1,0 +1,163 @@
+/* stonecamp-brand — shared brand layer for the StoneCampus family.
+ *
+ * Mirrors pointegrity's brand.css in shape (typography + token
+ * overrides) but tilts the palette warmer: motif's primary greens
+ * stay (sage / forest), with a stone-warm accent that differentiates
+ * us from the Pointegrity umbrella's red-and-green register.
+ *
+ * Load order:
+ *   1. motif/tokens.css       — base design tokens
+ *   2. motif/components.css   — base component classes
+ *   3. motif/utilities.css    — utility classes
+ *   4. brand.css              — THIS FILE
+ *   5. site.css / app.css     — page- or app-specific styles
+ */
+
+/* ============================================================
+ * Typography — IBM Plex family, self-hosted (same as Pointegrity).
+ * Static woff2s live under /static/fonts/.
+ * ============================================================ */
+
+/* Plex Sans 400 */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('/static/fonts/ibm-plex-sans-latin-400-normal.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+                 U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('/static/fonts/ibm-plex-sans-latin-ext-400-normal.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F,
+                 U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF,
+                 U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Plex Sans 500 */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('/static/fonts/ibm-plex-sans-latin-500-normal.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+                 U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('/static/fonts/ibm-plex-sans-latin-ext-500-normal.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F,
+                 U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF,
+                 U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Plex Sans 600 */
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('/static/fonts/ibm-plex-sans-latin-600-normal.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url('/static/fonts/ibm-plex-sans-latin-ext-600-normal.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+
+/* Plex Serif 400 (long-form prose) */
+@font-face {
+  font-family: 'IBM Plex Serif';
+  src: url('/static/fonts/ibm-plex-serif-latin-400-normal.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Serif';
+  src: url('/static/fonts/ibm-plex-serif-latin-500-normal.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+
+/* Plex Mono 400 / 500 (code blocks) */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('/static/fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('/static/fonts/ibm-plex-mono-latin-500-normal.woff2') format('woff2');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+
+/* ============================================================
+ * Token overrides — only the deltas from motif defaults.
+ * Motif's primary palette is already a sage-green family
+ * (#5f8a40 mid, #2d441d dark), which suits StoneCampus directly.
+ * The tilt vs Pointegrity is in the accent: stone-warm earth
+ * rather than the red brand accent the umbrella uses for "pi".
+ * ============================================================ */
+
+:root {
+  --font-sans:  'IBM Plex Sans',  system-ui, -apple-system, "Segoe UI",
+                Roboto, "Noto Sans CJK TC", sans-serif;
+  --font-serif: 'IBM Plex Serif', Georgia, Charter, Cambria, serif;
+  --font-mono:  'IBM Plex Mono',  ui-monospace, SFMono-Regular,
+                "SF Mono", Menlo, Consolas, monospace;
+
+  /* StoneCampus brand accents — earthy warm tones for "study at a
+     stone hearth" feel. Used sparingly on family tags + footer rules. */
+  --color-stone-warm: #8c6f4a;        /* sandstone */
+  --color-stone-deep: #5b4631;        /* walnut */
+  --color-stone-bg:   #f6f1e8;        /* parchment, for muted card sections */
+
+  /* Tighter radii read more coherent with Plex (matches Pointegrity). */
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  --shadow-md: 0 4px 16px -4px rgb(0 0 0 / 0.08),
+               0 2px 6px -2px rgb(0 0 0 / 0.06);
+}
+
+/* ============================================================
+ * Display-heading touches tuned for Plex Sans.
+ * ============================================================ */
+
+h1, h2 {
+  letter-spacing: -0.015em;
+}
+
+/* ============================================================
+ * Long-form content opt-in — apply .prose for journal / about.
+ * ============================================================ */
+
+.prose {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 40rem;
+}
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
+}
+.prose code, .prose pre {
+  font-family: var(--font-mono);
+}
+.prose p { margin: 0 0 1em; }
+
+/* ============================================================
+ * Focus ring + selection highlight.
+ * ============================================================ */
+
+:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--color-primary-100);
+  color: var(--color-primary-900);
+}

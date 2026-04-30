@@ -1,0 +1,272 @@
+/* StoneCampus umbrella-site styles. Builds on motif tokens.
+ * Sister to pointegrity/static/site.css — kept similar so a visitor
+ * crossing between Pointegrity and StoneCampus feels the same
+ * editorial cadence, but with a warmer accent register and a more
+ * "learning house" frame than "software company". */
+
+:root {
+  --page-max: 64rem;
+  --hero-max: 46rem;
+}
+
+body {
+  font-family: var(--font-sans, system-ui);
+  color: var(--color-neutral-900);
+  background: var(--color-neutral-50);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.wrap {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--space-4, 1rem);
+}
+
+/* --- Top nav --- */
+.topnav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3, 0.75rem) var(--space-4, 1rem);
+  border-bottom: 1px solid var(--color-neutral-200);
+}
+.topnav .brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  text-decoration: none;
+  color: var(--color-primary-800);
+  font-weight: 600;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+.topnav .brand .brand-mark {
+  /* Simple text mark for now — swap for an SVG wordmark when ready. */
+  background: var(--color-primary-700);
+  color: #fff;
+  padding: 0.1rem 0.45rem;
+  border-radius: var(--radius-sm, 0.25rem);
+  font-size: 0.75em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.topnav .brand:hover { opacity: 0.85; }
+.topnav .links a {
+  margin-left: var(--space-5, 1.25rem);
+  color: var(--color-neutral-700);
+  text-decoration: none;
+  font-size: var(--text-sm, 0.9rem);
+}
+.topnav .links a:hover { color: var(--color-primary-700); }
+
+/* --- Hero --- */
+.hero {
+  background: transparent;
+  border-radius: 0;
+  padding: var(--space-10, 4rem) var(--space-4) var(--space-8, 3rem);
+  text-align: center;
+  color: var(--color-neutral-900);
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 0 0 var(--space-4, 1rem);
+  color: var(--color-primary-800, #2d441d);
+  letter-spacing: -0.02em;
+}
+.hero p.sub {
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  color: var(--color-neutral-700);
+  max-width: var(--hero-max);
+  margin: 0 auto var(--space-6, 1.5rem);
+}
+.cta-row {
+  display: flex;
+  gap: var(--space-3, 0.75rem);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* --- Sections --- */
+.section {
+  padding: var(--space-8, 3rem) var(--space-4) var(--space-6, 2rem);
+}
+.section-title {
+  font-size: 1.75rem;
+  margin: 0 0 var(--space-5, 1.5rem);
+  color: var(--color-neutral-900);
+  letter-spacing: -0.01em;
+}
+.section-lead {
+  color: var(--color-neutral-700);
+  max-width: var(--hero-max);
+  margin: 0 0 var(--space-5);
+  font-size: 1.05rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-5, 1.5rem);
+}
+
+/* --- Product cards ---
+ * Same card geometry as Pointegrity for visual continuity, but
+ * we lean on a warmer card-tint for "soon" placeholders so the
+ * what's-cooking lane feels like an inviting unfinished worktable
+ * rather than greyed-out vapor. */
+.product {
+  padding: var(--space-5, 1.5rem);
+  position: relative;
+  transition: box-shadow var(--duration-fast, 150ms);
+}
+.product:hover { box-shadow: var(--shadow-md); }
+.product.soon-card {
+  background: var(--color-stone-bg);
+  border-style: dashed;
+}
+.product h3 {
+  margin: var(--space-2, 0.5rem) 0 var(--space-1);
+  font-size: 1.25rem;
+  color: var(--color-primary-700);
+}
+.product-tag {
+  margin: 0 0 var(--space-3, 0.75rem);
+  color: var(--color-neutral-600);
+  font-size: var(--text-sm, 0.9rem);
+  font-style: italic;
+}
+.product p {
+  margin: 0 0 var(--space-3, 0.75rem);
+  color: var(--color-neutral-700);
+  font-size: var(--text-sm, 0.95rem);
+}
+.product-meta {
+  font-size: var(--text-xs, 0.8rem);
+  color: var(--color-neutral-500);
+  margin: var(--space-3) 0 var(--space-4);
+}
+.product-actions {
+  display: flex;
+  gap: var(--space-2, 0.5rem);
+  flex-wrap: wrap;
+}
+
+/* Status pill in top-right of each card */
+.product-status {
+  position: absolute;
+  top: var(--space-3, 0.75rem);
+  right: var(--space-3, 0.75rem);
+  font-size: var(--text-xs, 0.7rem);
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-pill, 999px);
+  font-weight: var(--font-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.product-status.available {
+  background: var(--color-success-100, #dcfce7);
+  color: var(--color-success-800, #166534);
+}
+.product-status.soon {
+  background: var(--color-stone-bg);
+  color: var(--color-stone-deep);
+}
+.product-status.beta {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* Family decorator — top-left tag mirroring the status pill. The
+ * family-tag-* values differ from Pointegrity's: StoneCampus owns
+ * its own classification. */
+.family-tag {
+  position: absolute;
+  top: var(--space-3, 0.75rem);
+  left: var(--space-3, 0.75rem);
+  font-size: var(--text-xs, 0.7rem);
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-pill, 999px);
+  font-weight: var(--font-medium);
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+.family-tag-math {
+  background: rgba(74, 112, 48, 0.12);
+  color: #2e4a25;
+}
+.family-tag-code {
+  background: rgba(140, 111, 74, 0.16);
+  color: var(--color-stone-deep);
+}
+
+.product.family-math { border-top: 3px solid var(--color-primary-600); padding-top: var(--space-4); }
+.product.family-code { border-top: 3px solid var(--color-stone-warm);  padding-top: var(--space-4); }
+
+.family-tag + h3 { margin-top: var(--space-3); }
+
+/* --- Tenets (philosophy) --- */
+.tenet {
+  padding: var(--space-4);
+}
+.tenet h3 {
+  margin: 0 0 var(--space-2);
+  font-size: 1.05rem;
+  color: var(--color-primary-700);
+}
+.tenet p {
+  margin: 0;
+  color: var(--color-neutral-700);
+  font-size: var(--text-sm, 0.95rem);
+}
+
+/* --- Footer --- */
+footer {
+  padding: var(--space-8, 3rem) var(--space-4) var(--space-5);
+  border-top: 1px solid var(--color-neutral-200);
+  margin-top: var(--space-8, 3rem);
+  color: var(--color-neutral-500);
+  font-size: var(--text-sm, 0.9rem);
+}
+.foot-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-6, 1.5rem);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-4);
+}
+.foot-brand {
+  font-weight: var(--font-semibold);
+  color: var(--color-primary-800);
+  margin: 0;
+}
+.foot-tag {
+  margin: var(--space-1, 0.25rem) 0 0;
+  color: var(--color-neutral-500);
+}
+.foot-links {
+  display: flex;
+  gap: var(--space-4, 1rem);
+  flex-wrap: wrap;
+}
+.foot-links a {
+  color: var(--color-neutral-700);
+  text-decoration: none;
+}
+.foot-links a:hover { color: var(--color-primary-700); }
+.foot-copy {
+  margin: 0;
+  text-align: center;
+  color: var(--color-neutral-500);
+  font-size: var(--text-xs, 0.8rem);
+}
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+  .topnav { flex-direction: column; gap: var(--space-2, 0.5rem); padding: var(--space-3) var(--space-4); }
+  .topnav .links a { margin-left: 0; margin-right: var(--space-3); }
+  .hero { padding-top: var(--space-6); }
+  .foot-row { flex-direction: column; }
+}
