@@ -204,7 +204,11 @@ body {
 .product.family-math { border-top: 3px solid var(--color-primary-600); padding-top: var(--space-4); }
 .product.family-code { border-top: 3px solid var(--color-stone-warm);  padding-top: var(--space-4); }
 
-.family-tag + h3 { margin-top: var(--space-3); }
+/* Header must clear the absolutely-positioned family-tag chip (top-left)
+ * and status pill (top-right). space-3 left a 7px chip/header overlap;
+ * space-6 (24px) matches pointegrity.com's card spacing (≈4.6px gap
+ * below the chip). */
+.family-tag + h3 { margin-top: var(--space-6); }
 
 /* --- Tenets (philosophy) --- */
 .tenet {
